@@ -1,0 +1,41 @@
+name: Publish to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output ./nupkg
+
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ./nupkg/*.nupkg --source "github"
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install semantic-release
+      run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github
+
+    - name: Run semantic-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: semantic-release
