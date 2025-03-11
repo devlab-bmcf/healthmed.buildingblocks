@@ -32,6 +32,6 @@ jobs:
       run: dotnet pack --configuration Release --no-build --output ./nupkg
 
     - name: Publish to GitHub Packages
-      run: dotnet nuget push ./nupkg/*.nupkg --source "github"
+      run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/devlab-bmcf/index.json"
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
