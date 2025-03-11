@@ -7,10 +7,8 @@
         <Version>1.0.0</Version>
         <PackageId>HM.Core</PackageId>
         <Authors>Pedro Barão</Authors>
-        <Company>Pedro Barão</Company>
         <RepositoryUrl>https://github.com/devlab-bmcf/healthmed.buildingblocks</RepositoryUrl>
         <PackageProjectUrl>https://github.com/devlab-bmcf/healthmed.buildingblocks</PackageProjectUrl>
-        <PackageLicenseExpression>None</PackageLicenseExpression>
         <PackageDescription>HealthMed Building Blocks Core Library</PackageDescription>
         <PackageTags>healthmed buildingblocks core</PackageTags>
     </PropertyGroup>

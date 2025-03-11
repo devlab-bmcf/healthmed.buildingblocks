@@ -30,12 +30,12 @@ jobs:
     - name: Publish to GitHub Packages
       run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/devlab-bmcf/index.json"
       env:
-        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NUGET_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN  }}
 
     - name: Install semantic-release
       run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github
 
     - name: Run semantic-release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN  }}
       run: semantic-release
